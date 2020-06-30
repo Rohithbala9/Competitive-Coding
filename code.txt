@@ -1,0 +1,46 @@
+ public int firstMissingPositive(int[] a) {
+        int n=a.length;
+         int flag=0;
+        if(n==0)
+            return 1;
+        for(int i=0;i<n;i++)
+        {
+            if(a[i] == n)
+            {
+                flag=1;
+                break;
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]>0 && a[i] < n)
+            {
+                int k=a[i];
+                while(k<n)
+                {
+                    if(a[k]<=n&&a[k]>=0)
+                     {
+                         int temp=a[k];
+                         a[k]=n+2;
+                         k=temp;
+                     }
+                     else
+                     {
+                      a[k]=n+2;
+                         break;
+                     }
+                    
+                }
+            }
+        }
+       
+        for(int i=1;i<n;i++)
+        {
+            if(a[i]!=n+2)
+                return i;
+        }
+        if(flag==1)
+            return n+1;
+        else
+             return n;
+    }
